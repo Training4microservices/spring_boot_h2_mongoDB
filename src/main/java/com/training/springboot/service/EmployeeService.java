@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -30,5 +31,12 @@ public class EmployeeService {
 
   public void delete(int id) {
     employeeRepository.deleteById(id);
+  }
+
+  public Employee updateEmployee(String name, Integer id) {
+    Optional<Employee> originalEmployee = employeeRepository.findById(id);
+    Employee employee = originalEmployee.get();
+    employee.setName(name);
+    return employeeRepository.save(employee);
   }
 }

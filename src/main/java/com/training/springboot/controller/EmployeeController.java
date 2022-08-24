@@ -44,4 +44,22 @@ public class EmployeeController {
     }
     return new ResponseEntity("Employee deleted with id: "+id, HttpStatus.OK);
   }
+
+  @PutMapping("/employees")
+  private ResponseEntity updateEmployee(@RequestBody Employee employee) {
+    try{
+      employeeService.saveOrUpdate(employee);
+    } catch (Exception exception) {
+      return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity(" employee updated with id: "+employee.getId(), HttpStatus.OK);
+  }
+
+  @PatchMapping("/employees/{id}")
+  public ResponseEntity<?> updateEmployeeByPatch(@RequestParam("name") String name, @PathVariable("id") Integer id){
+    Employee employee = employeeService.updateEmployee(name,id);
+    return new ResponseEntity<>(employee,HttpStatus.OK);
+  }
+
+
 }

@@ -1,9 +1,12 @@
 package com.training.springboot.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "EMPLOYEE")
+@Data
 public class Employee {
 
   @Id
