@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="STUDENT")
@@ -14,8 +16,12 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotNull
+	@Size(min=4, message="Name should have atleast 4 characters")
 	@Column(name = "name")
 	private String name;
+	@NotNull
+	@Size(min=7, message="Passport should have atleast 7 characters")
 	@Column(name = "passport")
 	private String passport;
 	
